@@ -9,6 +9,10 @@
       "!(character(0)).ownings",
       "!(character(1)).ownings"
     ],
+    "variations": [
+      {"name": "back", "test": "random() < 0.5 and item(1)"},
+      {"name": "noback", "test": "not item(1)"}
+    ],
     "actions": [
       {
         "name": "give",
@@ -18,9 +22,9 @@
           "gift": true
         }
       },
-      {"name": "thank", "characters": [0, 1]},
+      {"name": "thank", "characters": [1, 0]},
       {
-        "if": "item(1)",
+        "if": "variations.back",
         "name": "give",
         "characters": [1, 0],
         "items": [1],
@@ -29,9 +33,18 @@
         }
       },
       {
-        "if": "item(1)",
+        "if": "variations.back",
         "name": "thank",
-        "characters": [1, 0]
+        "characters": [0, 1]
+      },
+      {
+        "if": "variations.noback",
+        "name": "cannot_give",
+        "characters": [1],
+        "others": {
+          "sorry": true,
+          "noowning": true
+        }
       }
     ]
   }

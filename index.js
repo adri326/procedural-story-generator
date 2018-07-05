@@ -53,7 +53,7 @@ let ctx = grammar.parseContext({
 });
 
 char[0].ownings.push("watch");
-char[1].ownings.push("pen");
+//char[1].ownings.push("pen");
 
 
 let situation = assets.situations[0];
