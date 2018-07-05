@@ -9,5 +9,6 @@ Clone this repository and run the project using `node`. As the project is in dev
 ```sh
 git clone https://github.com/adri326/procedural-story-generator.git
 cd procedural-story-generator
+npm i
 node ./
 ```
