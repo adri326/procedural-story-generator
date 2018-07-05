@@ -1,0 +1,22 @@
+[
+  {
+    "name": "give",
+    "requires": [
+      "characters: 2",
+      "items: 1",
+      "character(0):owns: item(0)"
+    ],
+    "apply": [
+      "character(0):lose: item(0)",
+      "character(1):receive: item(0)"
+    ],
+    "description": "[gift]{^name, character(0)} gives {pronoun:possessive, character(0)} {name, item(0)} to {name, character(1)} as a gift.[true]{^name, character(0)} gives {pronoun:possessive, character(0)} {name, item(0)} to {name, character(1)}."
+  },
+  {
+    "name": "thank",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": "{^name, character(0)} thanks {name, character(1)}{?random()<.5,\\ and smiles,}."
+  }
+]

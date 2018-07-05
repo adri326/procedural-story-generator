@@ -1,0 +1,38 @@
+[
+  {
+    "name": "gift",
+    "characters": [
+      ["this.ownings: 1"],
+      []
+    ],
+    "items": [
+      "!(character(0)).ownings",
+      "!(character(1)).ownings"
+    ],
+    "actions": [
+      {
+        "name": "give",
+        "characters": [0, 1],
+        "items": [0],
+        "others": {
+          "gift": true
+        }
+      },
+      {"name": "thank", "characters": [0, 1]},
+      {
+        "if": "item(1)",
+        "name": "give",
+        "characters": [1, 0],
+        "items": [1],
+        "others": {
+          "gift": true
+        }
+      },
+      {
+        "if": "item(1)",
+        "name": "thank",
+        "characters": [1, 0]
+      }
+    ]
+  }
+]

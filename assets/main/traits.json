@@ -1,0 +1,37 @@
+[
+  {
+    "name": "tall",
+    "description": "{^name, this} {<be>, this} quite tall.",
+    "rarity": 0.5,
+    "clashes": ["short"]
+  },
+  {
+    "name": "short",
+    "description": "{^name, this} {<be>, this} quite short.",
+    "rarity": 0.5,
+    "clashes": ["tall"]
+  },
+  {
+    "name": "perfectionist",
+    "description": "{^name, this} {<be>, this} perfectionist.",
+    "rarity": 0.3,
+    "clashes": []
+  },
+  {
+    "name": "procrastinator",
+    "description": "{^name, this} often {<procrastinate>, this}.",
+    "rarity": 0.2
+  },
+  {
+    "name": "self-trust",
+    "description": "{^name, this} {<be>, this} very trustful in {pronoun:reflexive, this}.",
+    "rarity": 0.3,
+    "clashes": ["self-untrust"]
+  },
+  {
+    "name": "self-untrust",
+    "description": "{^name, this} {<do>, this}n't trust {pronoun:reflexive, this} a lot.",
+    "rarity": 0.2,
+    "clashes": ["self-trust"]
+  }
+]

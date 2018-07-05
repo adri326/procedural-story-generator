@@ -1,0 +1,58 @@
+{
+  "skin": {
+    "main": [
+      "ivory",
+      "sand",
+      "beige",
+      "honey",
+      "golden",
+      "almond",
+      "chestnut"
+    ],
+    "second": [
+      "dark",
+      "light",
+      "warm",
+      "cold"
+    ]
+  },
+  "fur": {
+    "main": [
+      "chocolate",
+      "coffee",
+      "black",
+      "grey",
+      "red",
+      "orange",
+      "yellow",
+      "gold",
+      "white",
+      "peach"
+    ],
+    "second": [
+      "dark",
+      "light",
+      "warm",
+      "cold"
+    ]
+  },
+  "eye": {
+    "all": [
+      "blue",
+      "light blue",
+      "pale blue",
+      "grey",
+      "grey and blue",
+      "green",
+      "brown"
+    ],
+    "feral": [
+      "yellow",
+      "blue and yellow",
+      "green and yellow",
+      "blue and green",
+      "pale yellow",
+      "brown yellow"
+    ]
+  }
+}
