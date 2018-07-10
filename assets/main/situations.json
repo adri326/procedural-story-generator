@@ -1,6 +1,7 @@
 [
   {
     "name": "gift",
+    "starter": true,
     "characters": [
       ["this.ownings: 1"],
       []
@@ -45,6 +46,251 @@
           "sorry": true,
           "noowning": true
         }
+      }
+    ],
+    "next": [
+      {
+        "name": "fall",
+        "characters": [0, 1],
+        "probability": 0.3
+      },
+      {
+        "name": "walk",
+        "characters": [0, 1],
+        "probability": 0.5
+      }
+    ]
+  },
+  {
+    "name": "greet",
+    "starter": true,
+    "characters": [
+      [],
+      []
+    ],
+    "items": [],
+    "variations": [
+      {"name": "hug_time", "test": "(character(1)).mood.happiness > -0.5 and random() < 0.4"},
+      {"name": "hug", "test": "(character(1)).mood.happiness < 0 and (character(1)).mood.happiness > -0.5 and random() < 0.8 and not variations.hug_time"},
+      {"name": "ask_back", "test": "random() < 0.5"}
+    ],
+    "actions": [
+      {
+        "name": "greet",
+        "characters": [0, 1]
+      },
+      {
+        "name": "greet",
+        "characters": [1, 0],
+        "others": {
+          "back": true
+        }
+      }, {},
+      {
+        "name": "ask_feeling",
+        "characters": [0, 1]
+      },
+      {
+        "name": "say_feeling",
+        "characters": [1]
+      }, {"if": "variations.hug"},
+      {
+        "if": "variations.hug",
+        "name": "hug",
+        "characters": [0, 1]
+      },
+      {
+        "if": "variations.hug",
+        "name": "feeling_better",
+        "characters": [1]
+      },
+      {
+        "if": "variations.hug_time",
+        "situation": "hug_time",
+        "characters": [0, 1]
+      },
+      {"if": "variations.ask_back and not variations.hug_time"},
+      {
+        "if": "variations.ask_back",
+        "name": "ask_feeling",
+        "characters": [1, 0],
+        "others": {
+          "back": true
+        }
+      },
+      {
+        "if": "variations.ask_back",
+        "name": "say_feeling",
+        "characters": [0]
+      }
+    ],
+    "next": [
+      {
+        "name": "gift",
+        "characters": [0, 1],
+        "probability": 0.5
+      },
+      {
+        "name": "walk",
+        "characters": [0, 1],
+        "probability": 0.8
+      }
+    ]
+  },
+  {
+    "name": "hug_time",
+    "characters": [
+      [],
+      [],
+      ["optional"]
+    ],
+    "items": [],
+    "variations": [
+      {"name": "three", "test": "character(2)"}
+    ],
+    "actions": [
+      {
+        "name": "hug",
+        "characters": [0, 1]
+      },
+      {
+        "if": "variations.three",
+        "name": "hug",
+        "characters": [2, 0]
+      },
+      {
+        "if": "variations.three",
+        "name": "hug",
+        "characters": [1, 2]
+      },
+      {
+        "name": "hug",
+        "characters": [1, 0]
+      },
+      {
+        "if": "variations.three",
+        "name": "hug",
+        "characters": [0, 2]
+      },
+      {
+        "if": "variations.three",
+        "name": "hug",
+        "characters": [2, 1]
+      }
+    ]
+  },
+  {
+    "name": "fall",
+    "characters": [
+      [],
+      ["optional"]
+    ],
+    "items": [
+      "!(character(0)).ownings"
+    ],
+    "variations": [
+      {"name": "picked_up", "test": "character(1)"},
+      {"name": "loses_item", "test": "item(1) and random() < 0.5"}
+    ],
+    "actions": [
+      {
+        "name": "char_fall",
+        "characters": [0]
+      },
+      {
+        "if": "variations.loses_item",
+        "name": "loses_item",
+        "characters": [0],
+        "items": [0]
+      },
+      {
+        "if": "variations.picked_up",
+        "name": "char_pick_up_char",
+        "characters": [1, 0]
+      },
+      {
+        "if": "variations.picked_up and random() < 0.9",
+        "name": "thank",
+        "characters": [0, 1]
+      },
+      {
+        "if": "variations.loses_item and variations.picked_up",
+        "name": "char_pick_up_item",
+        "characters": [1],
+        "items": [0]
+      },
+      {
+        "if": "variations.loses_item and variations.picked_up",
+        "name": "give",
+        "characters": [1, 0],
+        "items": [0]
+      }
+    ],
+    "then": [
+      {
+        "name": "walk",
+        "characters": [0, 1],
+        "probability": 0.5
+      }
+    ]
+  },
+  {
+    "name": "walk",
+    "characters": [
+      [],
+      ["optional"]
+    ],
+    "items": [],
+    "variations": [
+      {"name": "meets_2", "test": "character(1) and random() < 0.5"},
+      {"name": "walk_together", "test": "character(1) and not variations.meets_2"},
+      {"name": "greet", "test": "random() < 0.8"}
+    ],
+    "actions": [
+      {
+        "if": "not variations.walk_together",
+        "name": "walk",
+        "characters": [0]
+      },
+      {
+        "if": "variations.walk_together",
+        "name": "walk",
+        "characters": [0, 1]
+      },
+      {"if": "variations.meets_2"},
+      {
+        "if": "variations.meets_2",
+        "name": "meet",
+        "characters": [0, 1],
+        "others": {
+          "while": "walking"
+        }
+      },
+      {
+        "if": "variations.meets_2 and variations.greet",
+        "name": "greet",
+        "characters": [0, 1]
+      },
+      {
+        "if": "variations.meets_2 and variations.greet",
+        "name": "greet",
+        "characters": [1, 0],
+        "others": {
+          "back": true
+        }
+      },
+      {"if": "variations.greet"},
+      {
+        "if": "variations.meets_2",
+        "name": "walk",
+        "characters": [1, 0]
+      }
+    ],
+    "next": [
+      {
+        "name": "fall",
+        "probability": 0.5,
+        "characters": [0, 1]
       }
     ]
   }

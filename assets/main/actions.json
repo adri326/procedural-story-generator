@@ -25,5 +25,129 @@
       "characters: 1"
     ],
     "description": "[others.sorry and others.noowning]{^name, character(0)} {<have>, character(0)} nothing to give and {<feel>, character(0)} sorry.[not others.sorry and others.noowning]{^name, character(0)} {<have>, character(0)} nothing to give.[others.sorry]{^name, character(0)} cannot give anything and {<feel>, character(0)} sorry.[true]{^name, character(0)} cannot give anything."
+  },
+  {
+    "name": "greet",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": "[others.back]{^name, character(0)} {<greet>, character(0), false} {name, character(1)} back.[true]{^name, character(0)} {<greet>, character(0), false} {name, character(1)}."
+  },
+  {
+    "name": "ask_feeling",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": "[others.back]{^name, character(0)} {<ask>, character(0), false} back how {name, character(1)} {<be>, character(1)} feeling.[true]{^name, character(0)} {<ask>, character(0), false} how {name, character(1)} {<be>, character(1)} feeling."
+  },
+  {
+    "name": "say_feeling",
+    "requires": [
+      "characters: 1"
+    ],
+    "description": [
+      "{^name, character(0)} {<say>, character(0)} that {pronoun:personal, character(0)} {<be>, character(0)} feeling ",
+      [
+        {
+          "if": "(character(0)).mood.happiness < -0.5",
+          "write": "sad"
+        },
+        {
+          "if": "(character(0)).mood.happiness > 0.5",
+          "write": "great"
+        },
+        {
+          "if": "(character(0)).mood.happiness < 0.5 and (character(0)).mood.happiness > -0.5",
+          "write": "{?random() < 0.5, normal, okay}"
+        }
+      ],
+      "."
+    ]
+  },
+  {
+    "name": "hug",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": "{^name, character(0)} {<hug>, character(0), false} {name, character(1)}."
+  },
+  {
+    "name": "feeling_better",
+    "requires": [
+      "characters: 1"
+    ],
+    "apply": [
+      "(character(0)).mood:happiness:+0"
+    ],
+    "description": "{^name, character(0)} {<be>, character(0), false} feeling better."
+  },
+  {
+    "name": "char_fall",
+    "requires": [
+      "characters: 1"
+    ],
+    "description": "{^name, character(0)} {<fall>, character(0), false} on the ground."
+  },
+  {
+    "name": "walk",
+    "requires": [
+      "characters: 1"
+    ],
+    "description": [
+      {
+        "if": "character(1)",
+        "write": "{^name, character(0)} and {name, character(1)} walk together."
+      },
+      {
+        "if": "true",
+        "write": "{^name, character(0)} {<walk>, character(0), false}."
+      }
+    ]
+  },
+  {
+    "name": "meet",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": [
+      {
+        "if": "others.while",
+        "write": "{^name, character(0)} {<meet>, character(0), false} {name, character(1)} while {!others.while}."
+      },
+      {
+        "if": "true",
+        "write": "{^name, character(0)} {<meet>, character(0), false} {name, character(1)}."
+      }
+    ]
+  },
+  {
+    "name": "loses_item",
+    "requires": [
+      "characters: 1",
+      "items: 1",
+      "character(0):owns: item(0)"
+    ],
+    "apply": [
+      "character(0):lose: item(0)"
+    ],
+    "description": "{^name, character(0)} {<lose>, character(0), false} {name, item(0)}."
+  },
+  {
+    "name": "char_pick_up_char",
+    "requires": [
+      "characters: 2"
+    ],
+    "description": "{^name, character(0)} {<pick>, character(0), false} up {name, character(1)}."
+  },
+  {
+    "name": "char_pick_up_item",
+    "requires": [
+      "characters: 1",
+      "items: 1"
+    ],
+    "apply": [
+      "character(0):receive: item(0)"
+    ],
+    "description": "{^name, character(0)} {<pick>, character(0), false} up {name, item(0)}."
   }
 ]

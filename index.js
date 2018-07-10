@@ -12,11 +12,15 @@ Array.prototype.random = function() {
 }
 
 global.settings = {
-	furry: true,
-	ageRange: [15, 25],
+	furry: false,
+	ageRange: [15, 35],
 	traitsAmount: [1, 5],
 	nonBinaryRate: 0.5
 };
+
+try {
+	global.settings.color = require("colors/safe");
+} catch (e) {}
 
 
 /* Procedural story generator
@@ -56,11 +60,11 @@ char[0].ownings.push("watch");
 //char[1].ownings.push("pen");
 
 
-let situation = assets.situations[0];
+let situation = assets.situations.filter((situation) => situation.starter).random();
 
 let situationCtx = situation.init(ctx);
 if (situationCtx) {
-	console.log(situation.run(situationCtx));
+  situation.run(situationCtx).then(console.log).catch(console.error);
 }
 
 //console.log(grammar.parseTemplate(assets.actions[0].description, ctx));
